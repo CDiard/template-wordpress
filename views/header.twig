@@ -1,0 +1,30 @@
+<header id="masthead" class="site-header">
+    <div class="site-branding">
+
+        {{ the_custom_logo()|raw }}
+
+        {% if is_front_page() and is_home() %}
+            <h1 class="site-title">
+                <a href="{{ home_url('/') }}" rel="home">{{ bloginfo('name') }}</a>
+            </h1>
+        {% else %}
+            <p class="site-title">
+                <a href="{{ home_url('/') }}" rel="home">{{ bloginfo('name') }}</a>
+            </p>
+        {% endif %}
+
+        {% set site_description = bloginfo('description', 'display') %}
+        {% if site_description or is_customize_preview() %}
+            <p class="site-description">{{ site_description }}</p>
+        {% endif %}
+
+    </div>
+
+    <nav id="site-navigation" class="main-navigation">
+        {{ wp_nav_menu({
+            'theme_location': 'primary-menu',
+            'menu_id': 'primary-menu',
+            'echo': false
+        })|raw }}
+    </nav>
+</header>

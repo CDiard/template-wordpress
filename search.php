@@ -7,46 +7,28 @@
  * @package Template_WordPress
  */
 
-get_header();
-?>
+$twig = $GLOBALS['twig'];
 
-	<main id="primary" class="site-main">
+$results = [];
+$query = get_search_query();
 
-		<?php if ( have_posts() ) : ?>
+if (have_posts()) {
+    while (have_posts()) {
+        the_post();
 
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php
-					printf( esc_html__( 'Résultats de recherche pour : %s', 'template-wordpress' ), '<span>' . get_search_query() . '</span>' );
-					?>
-				</h1>
-			</header><!-- .page-header -->
+        $results[] = [
+                'id'        => get_the_ID(),
+                'title'     => get_the_title(),
+                'excerpt'   => get_the_excerpt(),
+                'content'   => get_the_content(),
+                'link'      => get_permalink(),
+                'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'medium'),
+        ];
+    }
+}
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
-
-<?php
-get_sidebar();
-get_footer();
+echo $twig->render('search.twig', [
+        'query'   => $query,
+        'results' => $results,
+        'has_results' => count($results) > 0,
+]);

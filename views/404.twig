@@ -1,0 +1,19 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    <main id="primary" class="site-main">
+
+        <section class="error-404 not-found">
+            <h1 class="page-title">Oups ! Cette page est introuvable.</h1>
+
+            <div class="page-content">
+                <p>Il semble qu'aucun résultat n'ait été trouvé à cet endroit. Essayez peut-être l'un des liens ci-dessous ou effectuez une recherche.</p>
+
+                {{ get_search_form()|raw }}
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}

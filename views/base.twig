@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html {{ language_attributes()|raw }}>
+<head>
+    <meta charset="{{ bloginfo('charset') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ wp_head()|raw }}
+</head>
+
+<body class="{{ body_class() }}">
+{{ wp_body_open()|raw }}
+
+<div id="page" class="site">
+    {% include "header.twig" %}
+
+    <div id="content" class="site-content container">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% include "sidebar.twig" %}
+
+    {% include "footer.twig" %}
+</div>
+
+{{ wp_footer()|raw }}
+</body>
+</html>

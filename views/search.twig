@@ -1,0 +1,44 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    <main id="primary" class="site-main">
+
+        <h1 class="page-title">
+            Résultats pour : <span>{{ query|raw }}</span>
+        </h1>
+
+        {% if has_results %}
+            <div class="search-results">
+
+                {% for post in results %}
+                    <article class="search-item">
+
+                        {% if post.thumbnail %}
+                            <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
+                        {% endif %}
+
+                        <h2>
+                            <a href="{{ post.link }}">{{ post.title|raw }}</a>
+                        </h2>
+
+                        <p>{{ post.excerpt|raw }}</p>
+
+                    </article>
+                {% endfor %}
+
+            </div>
+
+            <div class="pagination">
+                {{ the_posts_pagination()|raw }}
+            </div>
+
+        {% else %}
+
+            <p>Aucun résultat trouvé.</p>
+
+        {% endif %}
+
+    </main>
+
+{% endblock %}

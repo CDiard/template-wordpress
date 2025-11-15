@@ -160,6 +160,13 @@ function template_wordpress_scripts() {
 add_action( 'wp_enqueue_scripts', 'template_wordpress_scripts' );
 
 /**
+ * TWIG initialization.
+ */
+add_action('after_setup_theme', function() {
+    require get_template_directory() . '/inc/twig-init.php';
+});
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';

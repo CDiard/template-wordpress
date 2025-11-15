@@ -12,46 +12,25 @@
  * @package Template_WordPress
  */
 
-get_header();
-?>
+$twig = $GLOBALS['twig'];
 
-	<main id="primary" class="site-main">
+$paged = get_query_var('paged') ? get_query_var('paged') : 1;
 
-		<?php
-		if ( have_posts() ) :
+$posts = $twig->getFunction('get_posts_context')->getCallable()([
+    'post_type' => 'post',
+    'posts_per_page' => get_option('posts_per_page'),
+    'paged' => $paged,
+]);
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
+$pagination = [
+    'prev_link' => get_previous_posts_link('« Articles précédents'),
+    'next_link' => get_next_posts_link('Articles suivants »'),
+];
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
-
-<?php
-get_sidebar();
-get_footer();
+echo $twig->render('index.twig', [
+    'is_home' => is_home(),
+    'is_front_page' => is_front_page(),
+    'page_title' => single_post_title('', false),
+    'posts' => $posts,
+    'pagination' => $pagination,
+]);

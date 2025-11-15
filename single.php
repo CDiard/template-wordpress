@@ -7,28 +7,43 @@
  * @package Template_WordPress
  */
 
-get_header();
-?>
 
-	<main id="primary" class="site-main">
+$twig = $GLOBALS['twig'];
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+$post_data = [];
 
-			get_template_part( 'template-parts/content', get_post_type() );
+if (have_posts()) {
+    while (have_posts()) {
+        the_post();
 
-			the_post_navigation(
-				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'template-wordpress' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'template-wordpress' ) . '</span> <span class="nav-title">%title</span>',
-				)
-			);
-		endwhile; // End of the loop.
-		?>
+        $post_data = [
+            'title' => get_the_title(),
+            'content' => apply_filters('the_content', get_the_content()),
+            'date' => get_the_date(),
+            'author' => get_the_author(),
+            'categories' => get_the_category(),
+            'tags' => get_the_tags(),
+            'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'large'),
+        ];
+    }
+}
 
-	</main><!-- #main -->
+$navigation = [
+    'prev' => get_previous_post(),
+    'next' => get_next_post(),
+];
 
-<?php
-get_sidebar();
-get_footer();
+echo $twig->render('single.twig', [
+    'post' => $post_data,
+    'navigation' => [
+        'prev' => $navigation['prev'] ? [
+            'title' => $navigation['prev']->post_title,
+            'url' => get_permalink($navigation['prev']->ID),
+        ] : null,
+
+        'next' => $navigation['next'] ? [
+            'title' => $navigation['next']->post_title,
+            'url' => get_permalink($navigation['next']->ID),
+        ] : null,
+    ]
+]);
