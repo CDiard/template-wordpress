@@ -160,6 +160,24 @@ function template_wordpress_scripts() {
 add_action( 'wp_enqueue_scripts', 'template_wordpress_scripts' );
 
 /**
+ * Disable/hide items in the administration menu
+ */
+function template_wordpress_remove_menus(): void
+{
+    remove_menu_page( 'edit-comments.php' );
+
+    // Hidden from everyone except admin
+    if (!current_user_can('administrator')) {
+        remove_menu_page('themes.php');
+        remove_menu_page('plugins.php');
+        remove_menu_page('users.php');
+        remove_menu_page('tools.php');
+        remove_menu_page('options-general.php');
+    }
+};
+add_action( 'admin_menu', 'template_wordpress_remove_menus' );
+
+/**
  * TWIG initialization.
  */
 add_action('after_setup_theme', function() {
