@@ -1,1 +1,8 @@
-@import "global.css";
+@import url('fonts.css');
+@import url('variables.css');
+@import url('base.css');
+@import url('header.css');
+@import url('footer.css');
+@import url('layouts.css');
+@import url('buttons.css');
+@import url('form.css');
