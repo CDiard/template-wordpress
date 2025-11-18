@@ -2,43 +2,52 @@
 
 {% block content %}
 
-    <main id="primary" class="site-main">
-
-        <h1 class="page-title">
-            Résultats pour : <span>{{ query|raw }}</span>
-        </h1>
-
-        {% if has_results %}
-            <div class="search-results">
-
-                {% for post in results %}
-                    <article class="search-item">
-
-                        {% if post.thumbnail %}
-                            <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
-                        {% endif %}
-
-                        <h2>
-                            <a href="{{ post.link }}">{{ post.title|raw }}</a>
-                        </h2>
-
-                        <p>{{ post.excerpt|raw }}</p>
-
-                    </article>
-                {% endfor %}
-
+    <section class="header-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Résultats pour : <span>{{ query|raw }}</span></h1>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="pagination">
-                {{ the_posts_pagination()|raw }}
+    <section class="list-page">
+        <div class="container">
+            <div class="row">
+                {% if has_results %}
+                    {% for post in results %}
+                        <article class="col-12 col-md-6 col-xl-3">
+                            {% if post.thumbnail %}
+                                <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
+                            {% endif %}
+
+                            <h2><a href="{{ post.link }}">{{ post.title|raw }}</a></h2>
+
+                            <p>{{ post.excerpt|raw }}</p>
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12">
+                        <p>Aucun résultat trouvé.</p>
+                    </div>
+                {% endif %}
             </div>
+        </div>
+    </section>
 
-        {% else %}
-
-            <p>Aucun résultat trouvé.</p>
-
-        {% endif %}
-
-    </main>
+    {% if has_results and results|length > 16 %}
+        <section class="pagination-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="navigation">
+                            {{ the_posts_pagination()|raw }}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
 
 {% endblock %}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html {{ language_attributes()|raw }}>
+<html {{ language_attributes()|raw }} data-bs-theme="light">
 <head>
     <meta charset="{{ bloginfo('charset') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,14 +9,13 @@
 <body class="{{ body_class() }}">
 {{ wp_body_open()|raw }}
 
-<div id="page" class="site">
+<div class="content">
     {% include "header.twig" %}
 
-    <div id="content" class="site-content container">
+    <main>
         {% block content %}{% endblock %}
-    </div>
-
-    {% include "sidebar.twig" %}
+        {#{% include "sidebar.twig" %}#}
+    </main>
 
     {% include "footer.twig" %}
 </div>

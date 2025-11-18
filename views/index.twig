@@ -2,40 +2,59 @@
 
 {% block content %}
 
-    <main id="primary" class="site-main main-content">
-        {% if posts|length > 0 %}
-
-            {% if is_home and not is_front_page %}
-                <h1 class="page-title">{{ page_title }}</h1>
-            {% endif %}
-
-            {% for post in posts %}
-                <article>
-                    {% if post.thumbnail %}
-                        <img src="{{ post.thumbnail }}" alt="">
+    <section class="header-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% if is_home and not is_front_page %}
+                        <h1>{{ page_title }}</h1>
                     {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <h2><a href="{{ post.permalink }}">{{ post.title|raw }}</a></h2>
-                    <p>{{ post.excerpt|raw }}</p>
-                    <small>{{ post.date }} - {{ post.author }}</small>
-                </article>
-            {% endfor %}
+    <section class="list-page">
+        <div class="container">
+            <div class="row">
+                {% if posts|length > 0 %}
+                    {% for post in posts %}
+                        <article class="col-12 col-md-6 col-xl-3">
+                            {% if post.thumbnail %}
+                                <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
+                            {% endif %}
 
-            <nav class="navigation">
-                {% if pagination.prev_link %}
-                    <div class="nav-previous">{{ pagination.prev_link|raw }}</div>
+                            <h2><a href="{{ post.permalink }}">{{ post.title|raw }}</a></h2>
+                            <p>{{ post.excerpt|raw }}</p>
+                            <small>{{ post.date }} - {{ post.author }}</small>
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12">
+                        <p>Aucun article pour le moment.</p>
+                    </div>
                 {% endif %}
-                {% if pagination.next_link %}
-                    <div class="nav-next">{{ pagination.next_link|raw }}</div>
-                {% endif %}
-            </nav>
+            </div>
+        </div>
+    </section>
 
-        {% else %}
-
-            <p>Aucun article pour le moment.</p>
-
-        {% endif %}
-
-    </main>
+    {% if posts|length > 16 %}
+        <section class="pagination-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="navigation">
+                            {% if pagination.prev_link %}
+                                <div class="nav-previous">{{ pagination.prev_link|raw }}</div>
+                            {% endif %}
+                            {% if pagination.next_link %}
+                                <div class="nav-next">{{ pagination.next_link|raw }}</div>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
 
 {% endblock %}

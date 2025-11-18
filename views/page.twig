@@ -1,26 +1,35 @@
 {% extends "base.twig" %}
 
+{% set page = get_page_context() %}
+
 {% block content %}
 
-    <main id="primary" class="site-main">
+    <section class="header-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>{{ page.title }}</h1>
 
-        {% set page = get_page_context() %}
-
-        <article id="post-{{ page.id }}" class="page-content">
-
-            <h1 class="page-title">{{ page.title }}</h1>
-            {{ test }}
-
-            {% if page.thumbnail %}
-                <img class="page-thumbnail" src="{{ page.thumbnail }}" alt="{{ page.title }}">
-            {% endif %}
-
-            <div class="page-body">
-                {{ page.content|raw }}
+                    {% if page.thumbnail %}
+                        <img src="{{ page.thumbnail }}" alt="{{ page.title }}">
+                    {% endif %}
+                </div>
             </div>
+        </div>
+    </section>
 
-        </article>
+    <section class="content-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>{{ test }}</p>
 
-    </main>
+                    <div class="wysiwyg">
+                        {{ page.content|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

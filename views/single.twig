@@ -2,37 +2,56 @@
 
 {% block content %}
 
-    <article class="single-post">
+    <section class="header-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>{{ post.title }}</h1>
 
-        <h1>{{ post.title }}</h1>
+                    {% if post.thumbnail %}
+                        <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
+                    {% endif %}
 
-        {% if post.thumbnail %}
-            <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
-        {% endif %}
-
-        <div class="meta">
-            <span>Publié le {{ post.date }}</span>
-            <span>par {{ post.author }}</span>
+                    <div>
+                        <span>Publié le {{ post.date }}</span>
+                        <span>par {{ post.author }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="content">
-            {{ post.content|raw }}
+    <section class="content-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="wysiwyg">
+                        {{ post.content|raw }}
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="post-navigation">
-            {% if navigation.prev %}
-                <a href="{{ navigation.prev.url }}" class="prev-post">
-                    ← {{ navigation.prev.title }}
-                </a>
-            {% endif %}
-
-            {% if navigation.next %}
-                <a href="{{ navigation.next.url }}" class="next-post">
-                    {{ navigation.next.title }} →
-                </a>
-            {% endif %}
+    <section class="pagination-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navigation">
+                        {% if navigation.prev %}
+                            <a href="{{ navigation.prev.url }}" class="prev-post">
+                                ← {{ navigation.prev.title }}
+                            </a>
+                        {% endif %}
+                        {% if navigation.next %}
+                            <a href="{{ navigation.next.url }}" class="next-post">
+                                {{ navigation.next.title }} →
+                            </a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
         </div>
-
-    </article>
+    </section>
 
 {% endblock %}
