@@ -12,8 +12,4 @@
  * @package Template_WordPress
  */
 
-$twig = $GLOBALS['twig'];
-
-echo $twig->render('page.twig', [
-    'test' => 'Hello World!'
-]);
+include_once 'controllers/page.php';

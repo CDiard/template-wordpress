@@ -10,14 +10,14 @@
 {{ wp_body_open()|raw }}
 
 <div class="content">
-    {% include "header.twig" %}
+    {% include "components/header.twig" %}
 
     <main>
         {% block content %}{% endblock %}
-        {#{% include "sidebar.twig" %}#}
+        {#{% include "components/sidebar.twig" %}#}
     </main>
 
-    {% include "footer.twig" %}
+    {% include "components/footer.twig" %}
 </div>
 
 {{ wp_footer()|raw }}

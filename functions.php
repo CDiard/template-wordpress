@@ -124,7 +124,7 @@ function template_wordpress_scripts(): void
     // Upload your custom CSS (in /css/custom.css)
     wp_enqueue_style(
         'custom-css',
-        get_template_directory_uri() . '/css/import.css',
+        get_template_directory_uri() . '/styles/import.css',
         ['theme-style'],
         $theme_version
     );
@@ -141,7 +141,7 @@ function template_wordpress_scripts(): void
     // Upload your custom script
     wp_enqueue_script(
         'theme-js',
-        get_template_directory_uri() . '/js/main.js',
+        get_template_directory_uri() . '/scripts/main.js',
         ['bootstrap-js'],
         $theme_version,
         true
@@ -174,12 +174,12 @@ add_action('admin_menu', 'template_wordpress_remove_menus');
  * TWIG initialization.
  */
 add_action('after_setup_theme', function () {
-    require get_template_directory() . '/inc/twig-init.php';
+    require get_template_directory() . '/configs/twig-init.php';
 });
 
 /**
  * Menu custom.
  */
 add_action('after_setup_theme', function () {
-    require get_template_directory() . '/inc/menu.php';
+    require get_template_directory() . '/configs/menu.php';
 });

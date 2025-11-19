@@ -7,6 +7,4 @@
  * @package Template_WordPress
  */
 
-$twig = $GLOBALS['twig'];
-
-echo $twig->render('404.twig', []);
+include_once 'controllers/404.php';
