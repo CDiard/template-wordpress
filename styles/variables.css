@@ -10,8 +10,17 @@
     --site-shadow-button: 0 1px 3px 0 color-mix(in srgb, var(--site-color-black) 10%, transparent), 0 1px 2px -1px color-mix(in srgb, var(--site-color-black) 10%, transparent);
     --site-shadow-window: 0 20px 36px -8px color-mix(in srgb, var(--site-color-black) 10%, transparent), 0 1px 1px 0 color-mix(in srgb, var(--site-color-black) 5%, transparent);
     --site-shadow-section: 0 0 10px -1px color-mix(in srgb, var(--site-color-black) 5%, transparent), 0 0 30px 0 color-mix(in srgb, var(--site-color-black) 5%, transparent);
+}
 
-    color-scheme: light;
+.wysiwyg {
+    --e-global-color-primary: var(--site-color-primary);
+    --e-global-color-secondary: var(--site-color-secondary);
+    --e-global-color-text: var(--site-color-text);
+    --e-global-color-accent: var(--site-color-accent);
+    --e-global-typography-primary-font-family: "Slabo Regular";
+    --e-global-typography-secondary-font-family: "Slabo Regular";
+    --e-global-typography-text-font-family: "Slabo Regular";
+    --e-global-typography-accent-font-family: "Slabo Regular";
 }
 
 /* Dark theme class for manual toggle */
@@ -25,6 +34,4 @@
     --site-shadow-button: 0 1px 3px 0 color-mix(in srgb, var(--site-color-black) 25%, transparent), 0 1px 2px -1px color-mix(in srgb, var(--site-color-black) 25%, transparent);
     --site-shadow-window: 0 20px 36px -8px color-mix(in srgb, var(--site-color-black) 25%, transparent), 0 1px 1px 0 color-mix(in srgb, var(--site-color-black) 20%, transparent);
     --site-shadow-section: 0 0 10px -1px color-mix(in srgb, var(--site-color-black) 20%, transparent), 0 0 30px 0 color-mix(in srgb, var(--site-color-black) 20%, transparent);
-
-    color-scheme: dark;
 }

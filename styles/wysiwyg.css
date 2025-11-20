@@ -1,0 +1,10 @@
+.wysiwyg {
+    .elementor-element {
+        padding: 0;
+
+        .e-con-inner {
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
