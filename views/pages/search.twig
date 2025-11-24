@@ -14,18 +14,10 @@
 
     <section class="list-page">
         <div class="container">
-            <div class="row">
+            <div class="row g-3">
                 {% if has_results %}
                     {% for post in results %}
-                        <article class="col-12 col-md-6 col-xl-3">
-                            {% if post.thumbnail %}
-                                <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
-                            {% endif %}
-
-                            <h2><a href="{{ post.link }}">{{ post.title|raw }}</a></h2>
-
-                            <p>{{ post.excerpt|raw }}</p>
-                        </article>
+                        {% include "components/card.twig" %}
                     {% endfor %}
                 {% else %}
                     <div class="col-12">
