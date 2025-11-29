@@ -30,19 +30,12 @@
         </div>
     </section>
 
-    {% if posts|length > 16 %}
-        <section class="pagination-page">
+    {% if posts|length > constant('TEMPLATE_WP_LENGTH_LISTS') %}
+        <section class="pagination-page mt-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
-                        <nav class="navigation">
-                            {% if pagination.prev_link %}
-                                <div class="nav-previous">{{ pagination.prev_link|raw }}</div>
-                            {% endif %}
-                            {% if pagination.next_link %}
-                                <div class="nav-next">{{ pagination.next_link|raw }}</div>
-                            {% endif %}
-                        </nav>
+                    <div class="col-12 d-flex justify-content-center">
+                        {{ bootstrap_pagination() }}
                     </div>
                 </div>
             </div>

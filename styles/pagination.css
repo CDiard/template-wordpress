@@ -1,0 +1,31 @@
+.pagination-page {
+    .pagination {
+        --bs-pagination-color: var(--site-color-text);
+        --bs-pagination-bg: transparent;
+        --bs-pagination-border-color: var(--site-color-primary);
+        --bs-pagination-hover-color: var(--site-color-text);
+        --bs-pagination-hover-bg: var(--site-color-accent);
+        --bs-pagination-hover-border-color: var(--site-color-accent);
+        --bs-pagination-focus-color: var(--site-color-text);
+        --bs-pagination-focus-bg: var(--site-color-primary);
+        --bs-pagination-active-color: var(--site-color-text);
+        --bs-pagination-active-bg: var(--site-color-primary);
+        --bs-pagination-active-border-color: var(--site-color-primary);
+
+        .page-item {
+            .page-link {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                svg.custom-icon {
+                    height: 16px;
+                    width: auto;
+                    aspect-ratio: 1/1;
+                    fill: var(--site-color-text);
+                }
+            }
+        }
+    }
+}

@@ -28,14 +28,12 @@
         </div>
     </section>
 
-    {% if has_results and results|length > 16 %}
-        <section class="pagination-page">
+    {% if has_results and results|length > constant('TEMPLATE_WP_LENGTH_LISTS') %}
+        <section class="pagination-page mt-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
-                        <nav class="navigation">
-                            {{ the_posts_pagination()|raw }}
-                        </nav>
+                    <div class="col-12 d-flex justify-content-center">
+                        {{ bootstrap_pagination() }}
                     </div>
                 </div>
             </div>
