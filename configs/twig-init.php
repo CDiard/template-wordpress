@@ -88,7 +88,7 @@ $twig->addFunction(new TwigFunction('flat_menu', function ($location, $classes =
         'container' => false,
         'echo' => false,
         'walker' => new Walker_Nav_Flat(),
-        'items_wrap' => '<nav class="' . esc_attr($classes) . '">%3$s</nav>',
+        'items_wrap' => '<nav class="' . esc_attr($classes) . '" role="navigation" aria-label="Menu principal">%3$s</nav>',
     ]);
 
 }, ['is_safe' => ['html']]));
